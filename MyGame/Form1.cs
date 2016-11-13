@@ -31,6 +31,7 @@ namespace MyGame
         public Form1()
         {
             InitializeComponent();
+
         }
         public void DeathCheck()
         {
