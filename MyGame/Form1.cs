@@ -27,12 +27,19 @@ namespace MyGame
         Hero Plane2 = new Plane(300, 300, 100, 100, 70, 0, false, "Tank",5, false);
         Hero Tank2 = new Tank(800, 800, 100, 100, 20, 0, false, "Magic", 6, false);
         Hero Ship2 = new Ship(500, 500, 150, 150, 50, 0, false, "Plane", 5, false);
-        
+        private Func<string> toString;
+
         public Form1()
         {
             InitializeComponent();
 
         }
+
+        public Form1(Func<string> toString)
+        {
+            this.toString = toString;
+        }
+
         public void DeathCheck()
         {
             if (Plane1.Hp == 0)
@@ -749,6 +756,12 @@ namespace MyGame
         public void WinCheck()
         {
            
+        }
+       
+private void button13_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2(textBox1.Text);
+            form2.ShowDialog();
         }
     }
 }
