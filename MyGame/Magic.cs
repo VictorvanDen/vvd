@@ -13,8 +13,9 @@ namespace MyGame
    
         public override void Skill2(List<Hero> Targets)
         {
-            if (this.Ap >= 150)
+            if (this.Ap >= 50)
             {
+                this.Ap -= 50;
                 foreach (Hero H in Targets)
                 {
                     H.Hp -= 90;

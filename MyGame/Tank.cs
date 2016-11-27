@@ -13,6 +13,7 @@ namespace MyGame
         {
             if (this.Ap >= 90)
             {
+                this.Ap -= 90;
                 foreach (Hero H in Targets)
                 {
                     H.Hp -= 390;

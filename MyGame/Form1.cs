@@ -18,6 +18,7 @@ namespace MyGame
         
         int attacktype;
         Hero agressor;
+        string name1,   name2;
         int stage = 0;
         Hero Magic1 = new Magic(110, 110, 200, 200, 10, 0, true, "Ship", 5, false);
         Hero Plane1 = new Plane(300, 300, 100, 100, 70, 0, true, "Tank", 5, false);
@@ -32,7 +33,13 @@ namespace MyGame
         public Form1()
         {
             InitializeComponent();
+        }
 
+        public Form1(string r1, string r2)
+        {
+            InitializeComponent();
+            name1 = r1;
+            name2 = r2;
         }
 
         public Form1(Func<string> toString)
@@ -47,6 +54,7 @@ namespace MyGame
                 this.Controls.Remove(Attack1);
                 Attack1.Dispose();
                 Plane1.Death = true;
+                pictureBox9.Visible = true;
                                
             }
 
@@ -63,18 +71,21 @@ namespace MyGame
                 Tank1.Death = true;
                 this.Controls.Remove(Attack2);
                 Attack2.Dispose();
+                pictureBox10.Visible = true;
             }
             if (Magic1.Hp == 0)
             {
                 Magic1.Death = true;
                 this.Controls.Remove(Attack3);
                 Attack3.Dispose();
+                pictureBox11.Visible = true;
             }
             if (Ship1.Hp <= 0)
             {
                 Ship1.Death = true;
                 this.Controls.Remove(Attack4);
                 Attack4.Dispose();
+                pictureBox12.Visible = true;
             }
             if (Tank2.Hp == 0)
             {
@@ -486,7 +497,7 @@ namespace MyGame
             Attack3.Enabled = true;
             Attack4.Enabled = true;
 
-            label49.Text = "1";
+            label49.Text = name1;
             label47.Text = "Выбирите атакуещего";
            
         }
@@ -523,7 +534,7 @@ namespace MyGame
             pictureBox2.Enabled = true;
             pictureBox3.Enabled = true;
             pictureBox4.Enabled = true;
-            label49.Text = "1";
+            label49.Text = name1;
             label47.Text = "Выбирите цель";
             LabelUpdade();
         }
@@ -562,7 +573,7 @@ namespace MyGame
  
             panel1.Enabled = false;
 
-            label49.Text = "2";
+            label49.Text = name2;
             label47.Text = "Выбирите атакуещего";
         }
         public void Stage3()
@@ -591,7 +602,7 @@ namespace MyGame
             Attack2.Enabled = false;
             Attack3.Enabled = false;
             Attack4.Enabled = false;
-            label49.Text = "2";
+            label49.Text = name2;
             label47.Text = "Выбирите цель";
             SkillAttack1.Enabled = false;
             button7.Enabled = false;
@@ -628,6 +639,7 @@ namespace MyGame
         {
             attacktype = 12;
             agressor = Magic1;
+            
             LabelUpdade();
             Stage1();
         }
@@ -740,6 +752,8 @@ namespace MyGame
         {
             LabelUpdade();
             DeathCheck();
+            WinCheck();
+            
         }
 
         private void button10_Click(object sender, EventArgs e)
@@ -755,12 +769,46 @@ namespace MyGame
         }
         public void WinCheck()
         {
-           
+           if(pictureBox9.Visible == true && pictureBox10.Visible==true && pictureBox11.Visible == true && pictureBox12.Visible == true)
+            {
+                timer1.Enabled = false;
+                MessageBox.Show("комманда "+ name2 + " выиграла");
+                
+            }
+           if (pictureBox5.Visible == true && pictureBox6.Visible == true && pictureBox7.Visible == true && pictureBox8.Visible == true)
+            {
+                timer1.Enabled = false;
+                MessageBox.Show("команда "+ name1 +" выиграла");
+                
+            }
+
         }
-       
-private void button13_Click(object sender, EventArgs e)
+
+        private void button9_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2(textBox1.Text);
+            List<Hero> Targets = new List<Hero>();
+            Targets.Add(Tank2);
+            Targets.Add(Ship2);
+            Targets.Add(Magic2);
+            Ship1.Skill2(Targets);
+            LabelUpdade();
+            Stage2();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            List<Hero> Targets = new List<Hero>();
+            Targets.Add(Tank1);
+            Targets.Add(Ship1);
+            Targets.Add(Magic1);
+            Ship2.Skill2(Targets);
+            LabelUpdade();
+            Stage0();
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
             form2.ShowDialog();
         }
     }

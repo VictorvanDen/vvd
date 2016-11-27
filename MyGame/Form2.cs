@@ -12,16 +12,16 @@ namespace MyGame
 {
     public partial class Form2 : Form
     {
-        public Form2(string r1)
+        public Form2()
         {
             InitializeComponent();
-            textBox1.Text = r1;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-           string r1 = textBox1.ToString(); 
-            Form F1 = new Form1();
+           string r1 = textBox1.Text.ToString();
+            string r2 = textBox2.Text.ToString();
+            Form F1 = new Form1(r1, r2);
             this.Hide();
             F1.ShowDialog();
             this.Close();

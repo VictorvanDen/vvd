@@ -28,10 +28,10 @@ namespace MyGame
         }
         public override void Skill1()
         {
-            if (Ap >= 30)
+            if (Ap >= 90)
             {
                 Target.Hp = Target.Hp - 900;
-                this.Ap -= 30;
+                this.Ap -= 90;
             }
             else
             {
